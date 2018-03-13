@@ -10,7 +10,7 @@
 
 首先需要在wxml中引入 （其中的事件绑定名称可以在组件js中进行修改）
 
-“<area-select id="areaSelect" bind:cancelEvent="_cancelEvent" bind:confirmEvent="_confirmEvent"></area-select>”
+/****/<area-select id="areaSelect" bind:cancelEvent="_cancelEvent" bind:confirmEvent="_confirmEvent"> </area-select>
 
 其次需要在引入组件的js中定义该组件(onReady)
 
