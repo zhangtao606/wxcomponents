@@ -8,7 +8,7 @@
 
 使用方式如下
 
-首先需要在wxll中引入 （其中的事件绑定名称可以在组件js中进行修改）
+首先需要在wxml中引入 （其中的事件绑定名称可以在组件js中进行修改）
 
 <area-select id="areaSelect" bind:cancelEvent="_cancelEvent" bind:confirmEvent="_confirmEvent"></area-select>
 
