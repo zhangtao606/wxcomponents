@@ -45,7 +45,9 @@ Component({
       area:'',
       address:'',
       community:''
-    }
+    },
+    // 请求函数通道
+    getBol:false
   },
   /*
   *组件生命周期函数，在组件实例进入页面节点树时执行
@@ -115,7 +117,8 @@ Component({
           _this.data.area.city=res.data.result;
           _this.setData({
             area:_this.data.area,
-            list:res.data.result
+            list:res.data.result,
+            getBol:!_this.data.getBol
           })
       })
      },
@@ -130,7 +133,8 @@ Component({
         _this.data.area.area=res.data.result;
         _this.setData({
             area:_this.data.area,
-            list:res.data.result
+            list:res.data.result,
+            getBol:!_this.data.getBol
         })
       })
      },
@@ -145,7 +149,8 @@ Component({
         _this.data.area.address=res.data.result;
         _this.setData({
             area:_this.data.area,
-            list:res.data.result
+            list:res.data.result,
+            getBol:!_this.data.getBol
         })
       })
      },
@@ -160,7 +165,8 @@ Component({
         _this.data.area.community=res.data.result;
         _this.setData({
             area:_this.data.area,
-            list:res.data.result
+            list:res.data.result,
+            getBol:!_this.data.getBol
         })
       })
      },
@@ -193,6 +199,13 @@ Component({
      },
      // 点击地址进行选择处理
      selectBtn(event){
+      // 判断是否可以点击默认第一次可以
+      if (this.data.getBol) {
+        this.setData({
+          getBol:!this.data.getBol
+        });
+        return false;
+      }
       // 判断当前的点击区域selectNum值 0：省。1：市。2：区。3：街道。
       if (this.data.selectNum==0) {
         // 保存信息
