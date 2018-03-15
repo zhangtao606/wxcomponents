@@ -117,8 +117,7 @@ Component({
           _this.data.area.city=res.data.result;
           _this.setData({
             area:_this.data.area,
-            list:res.data.result,
-            getBol:!_this.data.getBol
+            list:res.data.result
           })
       })
      },
@@ -133,8 +132,7 @@ Component({
         _this.data.area.area=res.data.result;
         _this.setData({
             area:_this.data.area,
-            list:res.data.result,
-            getBol:!_this.data.getBol
+            list:res.data.result
         })
       })
      },
@@ -149,8 +147,7 @@ Component({
         _this.data.area.address=res.data.result;
         _this.setData({
             area:_this.data.area,
-            list:res.data.result,
-            getBol:!_this.data.getBol
+            list:res.data.result
         })
       })
      },
@@ -165,8 +162,7 @@ Component({
         _this.data.area.community=res.data.result;
         _this.setData({
             area:_this.data.area,
-            list:res.data.result,
-            getBol:!_this.data.getBol
+            list:res.data.result
         })
       })
      },
@@ -199,13 +195,10 @@ Component({
      },
      // 点击地址进行选择处理
      selectBtn(event){
-      // 判断是否可以点击默认第一次可以
-      if (this.data.getBol) {
-        this.setData({
-          getBol:!this.data.getBol
-        });
-        return false;
-      }
+      // 清空列表
+      this.setData({
+        list:[]
+      })
       // 判断当前的点击区域selectNum值 0：省。1：市。2：区。3：街道。
       if (this.data.selectNum==0) {
         // 保存信息
@@ -222,7 +215,6 @@ Component({
           area:this.data.area,
           selectNum:this.data.selectNum,
           provinceName:event.currentTarget.dataset.item.name,
-          list:this.data.area.province,
           isHaveSubset:event.currentTarget.dataset.item.isHaveSubset?true:false
         })
         this.getCity();
@@ -243,7 +235,6 @@ Component({
           area:this.data.area,
           selectNum:this.data.selectNum,
           cityName:event.currentTarget.dataset.item.name,
-          list:this.data.area.city,
           isHaveSubset:event.currentTarget.dataset.item.isHaveSubset?true:false
         })
         this.getArea();
@@ -262,7 +253,6 @@ Component({
           area:this.data.area,
           selectNum:this.data.selectNum,
           areaName:event.currentTarget.dataset.item.name,
-          list:this.data.area.area,
           isHaveSubset:event.currentTarget.dataset.item.isHaveSubset?true:false
         })
         // 判断是否还有下一级// 由于数据源不对等，有三级数据源，所以需要做数据重置处理以免造成返回数据叠加问题
@@ -291,7 +281,6 @@ Component({
           area:this.data.area,
           selectNum:this.data.selectNum,
           addressName:event.currentTarget.dataset.item.name,
-          list:this.data.area.address,
           isHaveSubset:event.currentTarget.dataset.item.isHaveSubset?true:false
         })
         // 由于数据源不对等，有三级数据源，所以需要做数据重置处理以免造成返回数据叠加问题
@@ -317,7 +306,6 @@ Component({
           selectNum:this.data.selectNum,
           area:this.data.area,
           communityName:event.currentTarget.dataset.item.name,
-          list:this.data.area.community,
           isHaveSubset:event.currentTarget.dataset.item.isHaveSubset?true:false
         })
       }
@@ -368,7 +356,7 @@ this.areaSelect=this.selectComponent("#areaSelect");
 
 做完这些后就是在js中绑定好事件
 
-取消事件：_canceEvent
+取消事件：_canceEvent 
 
 确认事件：_cnnfirmEvent
 
